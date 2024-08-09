@@ -8,11 +8,14 @@ namespace HCLSWebAPI.Models
     {
         [Key]
         public int AdminId { get; set; }
-        [Required (ErrorMessage ="Enter your Name")]
         public string AName { get; set; }
+        [Required(ErrorMessage = "Enter your Name")]
         public string Gender { get; set; }
+        [Required(ErrorMessage = "Enter your Gender")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Enter your Email")]
         public string Address { get; set; }
+        [Required(ErrorMessage = "Enter your Address")]
         public string Password { get; set; }
         [Required(ErrorMessage = "Password field is required")]
         public bool Active { get; set; }

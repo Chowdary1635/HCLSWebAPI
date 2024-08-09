@@ -24,22 +24,22 @@ namespace HCLSWebAPI.Controllers
         {
             try
             {
-                if (ModelState.IsValid) 
+            if (ModelState.IsValid) 
+            {
+                var count = await AdmRef.AdminRegistration(admin);
+                if (count > 0)
                 {
-                    var count = await AdmRef.AdminRegistration(admin);
-                    if (count > 0)
-                    {
-                        return Ok(count);
-                    }
-                    else
-                    {
-                        return BadRequest("Record is Not Inserted...!");
-                    }
+                   return Ok(count);
                 }
                 else
                 {
-                    return BadRequest(ModelState);
+                   return BadRequest("Record is Not Inserted...!");
                 }
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
                
             }
             catch (Exception e)
