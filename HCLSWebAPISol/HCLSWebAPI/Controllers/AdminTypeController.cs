@@ -51,7 +51,7 @@ namespace HCLSWebAPI.Controllers
                 }
                 else
                 {
-                    return NotFound("Record is Not available in the database...!");
+                    return NotFound("Record are Not available in the database...!");
                 }
             }
             catch (Exception e)
