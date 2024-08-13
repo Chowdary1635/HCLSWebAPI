@@ -17,31 +17,33 @@ namespace HCLSWebAPI.Controllers
         {
             AdmRef = admRef;
         }
-
         [HttpPost]
         [Route("AdminRegistration")]
         public async Task<IActionResult> AdminRegistration(Admin admin)
         {
             try
             {
-            if (ModelState.IsValid) 
-            {
-                var count = await AdmRef.AdminRegistration(admin);
-                if (count > 0)
+                if (ModelState.IsValid)
                 {
-                   return Ok(count);
+                    var count = await AdmRef.AdminRegistration(admin);
+                    if (count > 0)
+                    {
+                        return Ok(count);
+                    }
+                    else
+                    {
+                        return BadRequest("Records not Registered");
+                    }
                 }
                 else
                 {
-                   return BadRequest("Record is Not Inserted...!");
+                    return BadRequest(ModelState);
                 }
-               
             }
             catch (Exception e)
             {
-                return BadRequest("Something went wrong...!\n" + "Issue:" + e.Message + "\n we will solve this issue soon");
+                return BadRequest("Something went wrong " + e.Message + "Will resolve soon");
             }
-
         }
         [HttpGet]
         [Route("AllOperationalAdmins")]

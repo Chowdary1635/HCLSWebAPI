@@ -6,24 +6,32 @@ namespace HCLSWebAPI.Models
     [Table("Admin")]
     public class Admin
     {
+
         [Key]
+
         public int AdminId { get; set; }
-        public string AName { get; set; }
         [Required(ErrorMessage = "Enter your Name")]
+        [StringLength(15, ErrorMessage = "Donot Enter more than 15 chars ")]
+
+        public string Name { get; set; }
         public string Gender { get; set; }
-        [Required(ErrorMessage = "Enter your Gender")]
-        public string Email { get; set; }
+
         [Required(ErrorMessage = "Enter your Email")]
-        public string Address { get; set; }
-        [Required(ErrorMessage = "Enter your Address")]
+        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Please enter correct email")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "Password Field is Required")]
+        [PasswordValidation()]
         public string Password { get; set; }
-        [Required(ErrorMessage = "Password field is required")]
+        [Required(ErrorMessage = "Address Field is Required")]
+        public string Address { get; set; }
         public bool Active { get; set; }
 
-        [ForeignKey("AdminType")]
-        [Required(ErrorMessage ="ID is Manadatory")]
+        [ForeignKey("AdminTypes")]
+        [Required(ErrorMessage = "ID is Mandatory")]
+        [ZeroOrNegativeCheck(ErrorMessage = "Please Select AdminTypeId")]
         public int AdminTypeId { get; set; }
-
-        public AdminType AdminType { get; set; }
+        public AdminType AdminTypes { get; set; }
     }
 }
+
