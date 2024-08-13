@@ -35,11 +35,6 @@ namespace HCLSWebAPI.Controllers
                 {
                    return BadRequest("Record is Not Inserted...!");
                 }
-            }
-            else
-            {
-                return BadRequest(ModelState);
-            }
                
             }
             catch (Exception e)
